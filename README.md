@@ -1,6 +1,11 @@
 # Teensy3.6TAF
-
+, BirdTAF for Teensy 3.6.
 A handful of notes:
+
+for 44.1Khz, I recomment overclocking- otherwise it could have issues from time to time. 216MHz seems to work well. To get at it, you may have to edit boards.txt (arduino/hardware/teensy/avr/boards.txt) and uncomment the higher overclock speeds. 
+
+------------------------------
+Variables for TAF:
 
 templt is an array of 1:FFT_SIZE/2 containing the template for matching. This should be normalized to one generally, and the FFTs calculated are normalized as well.
 
@@ -12,7 +17,7 @@ AMPLITUDE_THRESHOLD_DURATION is how many times in a row the templates should be 
 
 FF_DISCARD throws out FFs below this in the comparison to get rid of low frequency garbage in the FFT
 
-FF_MIN and FF_MAX define the range for looking for a stack- this helps keep the estimate at the FF, even if the maximum power is in a higher harmonic. 
+FF_MIN and FF_MAX define the range for looking for the FF- this helps keep the estimate at the FF, even if the maximum power is in a higher harmonic for a stacky syllable. 
 
 FREQTHRESH sets the threshold, above or below which WN is triggered. 
 
