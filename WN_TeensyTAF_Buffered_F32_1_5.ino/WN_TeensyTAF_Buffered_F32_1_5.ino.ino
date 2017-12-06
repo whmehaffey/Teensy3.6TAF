@@ -1,3 +1,12 @@
+//BIRDTAF variant running on Teensy 3.6
+//Hamish Mehaffey,  Dec. 2017. 
+//as always, a work in progress. 
+//
+// William.Mehaffey@ucsf.edu
+// Distributed as-is. No warranty given. 
+//
+// 
+
 // ARM library.....
 #define ARM_MATH_CM4
 #include <arm_math.h>
