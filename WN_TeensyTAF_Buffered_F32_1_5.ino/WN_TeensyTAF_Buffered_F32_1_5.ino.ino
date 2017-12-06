@@ -115,7 +115,6 @@ void setup() {
   digitalWrite(BNC_TRIGGER_OUTPUT_PIN, LOW);
 
 
-
   // Set up ADC and audio input.
   pinMode(AUDIO_INPUT_PIN, INPUT);
   analogReadResolution(ANALOG_READ_RESOLUTION);
@@ -149,7 +148,7 @@ void loop() {
 
     CalculateFFT(); // Galculate the FFT, results are cast to the magnitudes variable.
 
-    //export_mags(); For testing of FFT- will sent out 0:FFT_SIZE/2 from the calculated FFT magnitudes. 
+//    export_mags(); //For testing of FFT- will sent out 0:FFT_SIZE/2 from the calculated FFT magnitudes. 
     dp = ScaleAndCompareToTemplate();
     
     if ((dp >= DPTHRESH)) { //// Are we above the template match threshold?
@@ -280,7 +279,7 @@ void CalculateFFT() {
     if (status == 0){      
           arm_rfft_f32(&rfft_inst, fftbuffer, complexmagnitudes); // and calculate the FFT.
     }
-    arm_cmplx_mag_squared_f32(complexmagnitudes, magnitudes , FFT_SIZE); // doesnt have to be squared. ampl_cmplx_mag_f32 would probably work fine too. 
+    arm_cmplx_mag_f32(complexmagnitudes, magnitudes , FFT_SIZE); // doesnt have to be squared. ampl_cmplx_mag_f32 would probably work fine too. 
 
     
   }
@@ -292,7 +291,7 @@ void CalculateFFT() {
     }
    
     // Calculate magnitude of complex numbers output by the FFT.
-    arm_cmplx_mag_squared_f32(fftbuffer, magnitudes, FFT_SIZE);
+    arm_cmplx_mag_f32(fftbuffer, magnitudes, FFT_SIZE);
   }
   
   //
@@ -305,13 +304,14 @@ void CalculateFFT() {
 float ScaleAndCompareToTemplate() {
 
   float scaledmags[TEMPLT_SIZE];
-  float peakmag;
-  float scalefactor;
+  float32_t peakmag;
+  float32_t scalefactor;
   uint32_t peakmagidx;
   float dotprod;
 
-  arm_max_f32(magnitudes,TEMPLT_SIZE,&scalefactor,&peakmagidx);//find the max; 
+  arm_max_f32(magnitudes,FFT_SIZE,&scalefactor,&peakmagidx);//find the max; 
   scalefactor=1/scalefactor; // for vector multiplation below 
+
   arm_scale_f32(magnitudes, scalefactor, scaledmags, TEMPLT_SIZE); // and normalize.
   arm_dot_prod_f32(scaledmags, templt, TEMPLT_SIZE, &dotprod); // and calculate the dot product
 
@@ -404,17 +404,21 @@ void export_mags() {
 
        float scaledOut;
        int fftmax = 0;
+         float scaledmags[TEMPLT_SIZE];
+      float32_t peakmag;
+      float32_t scalefactor;
+      uint32_t peakmagidx;
+      float dotprod;
 
-       for (int i=0; i <=TEMPLT_SIZE-1; i++) { 
-              if (magnitudes[i] > fftmax) {
-           fftmax=magnitudes[i];
-          }        
-       }
+      arm_max_f32(magnitudes,FFT_SIZE,&scalefactor,&peakmagidx);//find the max; 
+      scalefactor=1/scalefactor; // for vector multiplation below 
+
+      arm_scale_f32(magnitudes, scalefactor, scaledmags, TEMPLT_SIZE); // and normalize.
    
        for (int i=0; i<=TEMPLT_SIZE-1; i++) {
-            scaledOut=(float)magnitudes[i];
-            scaledOut=scaledOut/fftmax;
-            Serial.print(scaledOut);                    
+            //scaledOut=(float)magnitudes[i];
+            //scaledOut=scaledOut/fftmax;
+            Serial.print(scaledmags[i]);                    
             Serial.print(',');
        }
 
