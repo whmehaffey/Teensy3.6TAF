@@ -2,6 +2,17 @@
 , BirdTAF for Teensy 3.6.
 A handful of notes:
 
+You can order boards at OSH Park:
+
+https://oshpark.com/shared_projects/d7Odnek7
+
+for ~10$ea.
+
+or submit the eagle .brd file included here yourself. 
+
+
+
+
 for 44.1Khz, I recomment overclocking- otherwise it could have issues from time to time. 216MHz seems to work well. To get at it, you may have to edit boards.txt (arduino/hardware/teensy/avr/boards.txt) and uncomment the higher overclock speeds. 
 
 ------------------------------

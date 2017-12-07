@@ -112,7 +112,7 @@
 <wire x1="96.19" y1="12.7" x2="95.936" y2="64.76" width="0" layer="20"/>
 <wire x1="95.936" y1="64.76" x2="25.654" y2="64.76" width="0" layer="20"/>
 <wire x1="25.654" y1="64.76" x2="25.908" y2="12.954" width="0" layer="20"/>
-<text x="33.528" y="13.97" size="1.778" layer="25">TeensyTAF v.2.1 (Teensy 3.6)</text>
+<text x="45.212" y="14.224" size="1.778" layer="25">TeensyTAF v.2.1 (Teensy 3.6)</text>
 <hole x="49.53" y="16.51" drill="0.6"/>
 <hole x="49.53" y="16.51" drill="0.6"/>
 <hole x="49.53" y="16.51" drill="0.6"/>
