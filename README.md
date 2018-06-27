@@ -15,6 +15,14 @@ or submit the eagle .brd file included here yourself.
 
 for 44.1Khz, I recomment overclocking- otherwise it could have issues from time to time. 216MHz seems to work well. To get at it, you may have to edit boards.txt (arduino/hardware/teensy/avr/boards.txt) and uncomment the higher overclock speeds. 
 
+To get spectrogram out: uncomment 'export_mags', and comment out anything else that prints to a serial port- you'll be able to get the PSD calculated by the teensy whenever the audio input is above AMP_THRESHOLD. This is also useful for testing this variable.
+Let the bird sing, copy and paste out of the serial monitor, and have a look for something you can target. You can make a template from the PSD, or something more arbitrary- if you're getting hits in non-target syllables consider negative values in the template to penalize regions of the syllable that have power the target syllable does not.
+
+Once you have a template, copy it in, recomment export_mags, and uncomment Serial.println(dp). Now it'll kick out the template(x)psd distance every time sound is above threshold. 
+
+You can use Serial Monitor or Serial Plotter, but as long as you see a single peak for each song, you have a good template- pick a threshold where it crosses and avoids everything else, and see how it goes. 
+
+
 ------------------------------
 Variables for TAF:
 
