@@ -15,12 +15,11 @@ or submit the eagle .brd file included here yourself.
 
 for 44.1Khz, I recomment overclocking- otherwise it could have issues from time to time. 216MHz seems to work well. To get at it, you may have to edit boards.txt (arduino/hardware/teensy/avr/boards.txt) and uncomment the higher overclock speeds. 
 
-To get spectrogram out: uncomment 'export_mags', and comment out anything else that prints to a serial port- you'll be able to get the PSD calculated by the teensy whenever the audio input is above AMP_THRESHOLD. This is also useful for testing this variable.
-Let the bird sing, copy and paste out of the serial monitor, and have a look for something you can target. You can make a template from the PSD, or something more arbitrary- if you're getting hits in non-target syllables consider negative values in the template to penalize regions of the syllable that have power the target syllable does not.
+If you want to build a template- I would uncomment the 'exports_mags' line, and comment out any other Serial.println. Then, whenever the sound is above threshold, you'll start to export the PSD estimate. This will give you the PSDs the Teensy is calculating during song (and also help make sure your amplitude threshold is right- it should be calcuating when the bird is singing, but not when it's quiet
 
-Once you have a template, copy it in, recomment export_mags, and uncomment Serial.println(dp). Now it'll kick out the template(x)psd distance every time sound is above threshold. 
+Once you have a template, you can recomment export_mags, and uncomment Serial.println(dp) which will export the distance between the template and the current PSD. If you're well-targeted, you should see a sharp peak, which makes it easy to set a threshold (DPTHRESH).
 
-You can use Serial Monitor or Serial Plotter, but as long as you see a single peak for each song, you have a good template- pick a threshold where it crosses and avoids everything else, and see how it goes. 
+You can also use negative values in the template if you want to penalize spectral information that's present in a syllable you want to avoid, but absent in the target syllable. 
 
 
 ------------------------------
