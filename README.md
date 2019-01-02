@@ -1,5 +1,11 @@
 # Teensy3.6TAF
 , BirdTAF for Teensy 3.6.
+
+1/2/2019- Version with GUI now at: 
+https://github.com/whmehaffey/TeensyTAF_GUI/tree/master
+
+This version is now mostly for archival purposes
+
 A handful of notes:
 
 You can order boards at OSH Park:
