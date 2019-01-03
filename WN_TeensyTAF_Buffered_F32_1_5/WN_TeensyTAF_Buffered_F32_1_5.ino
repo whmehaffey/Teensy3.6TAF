@@ -182,6 +182,7 @@ void loop() {
       } // end of sanity check for peak FF.
     } //end of template match triggered portions
   } // end of amplitude triggered portion
+  AboveThresh = 0;
 
   //float timeb = micros();
   //Serial.println(timeb - timea);  // benchmarking output. 
@@ -212,10 +213,6 @@ void play_wn() {
   //
   digitalWrite(BNC_TRIGGER_OUTPUT_PIN, LOW);
   
-
-  //if (HIT == 0) {
-//    delay(50); // catch trials are 50ms longer on the audio channel to help tell catch, from hit, from total miss.   
-//  }
 
   digitalWrite(TRIGGER_OUTPUT_PIN, LOW); 
   digitalWrite(POWER_LED_PIN, LOW);        // And power everything else down too. 
