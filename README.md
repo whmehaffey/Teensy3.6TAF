@@ -1,5 +1,18 @@
 # Teensy3.6TAF
 , BirdTAF for Teensy 3.6.
+
+--------------------------------------------
+
+As of 1/2/2019, there's also a GUI version, with improved audio buffering. 
+
+This version is mostly for archival purposes.
+
+https://github.com/whmehaffey/TeensyTAF_GUI
+
+
+
+---------------------------------------------
+
 A handful of notes:
 
 You can order boards at OSH Park:
