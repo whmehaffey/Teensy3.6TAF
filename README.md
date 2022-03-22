@@ -1,6 +1,8 @@
 # Teensy3.6TAF
 , BirdTAF for Teensy 3.6.
 
+Deprecated, See TeensyTAF 4. 
+
 --------------------------------------------
 
 As of 1/2/2019, there's also a GUI version, with improved audio buffering. 
